@@ -1,0 +1,269 @@
+/* Thiết lập biến màu sắc */
+:root {
+    --primary-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --card-glass: rgba(255, 255, 255, 0.25);
+    --card-border: rgba(255, 255, 255, 0.4);
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+}
+
+/* Reset CSS cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+/* --- KIỂU DÁNG HEADER --- */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.logo h2 {
+    color: #e52e2d;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.search-bar {
+    display: flex;
+    width: 40%;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #e52e2d;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #e52e2d;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-bar button:hover {
+    background-color: #c92424;
+}
+
+.header-contact {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.hotline strong {
+    color: #e52e2d;
+    font-size: 18px;
+}
+
+.cart {
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Thanh Menu Điều Hướng */
+.navbar {
+    background-color: #e52e2d;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list a {
+    display: block;
+    padding: 15px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.nav-list a:hover, 
+.nav-list a.active {
+    background-color: #bf1f1f;
+}
+
+/* Responsive cơ bản */
+@media (max-width: 900px) {
+    .header-top {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-bar {
+        width: 80%;
+    }
+    .nav-list {
+        flex-wrap: wrap;
+    }
+}
+
+/* --- PHẦN HIỂN THỊ SẢN PHẨM (BODY) --- */
+.main-content {
+    background: var(--primary-gradient);
+    min-height: calc(100vh - 130px);
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+#guitar-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+    background: var(--card-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+
+.image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blob {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.guitar-sprite {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover .guitar-sprite {
+    transform: scale(1.1);
+}
+
+.guitar-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    color: var(--text-primary);
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.types-container {
+    margin-bottom: 1.5rem;
+}
+
+.type-badge {
+    background: rgba(45, 52, 54, 0.1);
+    color: var(--text-secondary);
+    padding: 0.35rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Thêm CSS cho phần Thông số (Giá, Hãng) */
+.stats-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: #e52e2d;
+    font-size: 1.1rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Nút Xem chi tiết */
+.card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.detail-btn {
+    text-decoration: none;
+    color: #e52e2d;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.detail-btn:hover {
+    background: #e52e2d;
+    color: white;
+    transform: scale(1.05);
+}

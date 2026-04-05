@@ -1,0 +1,74 @@
+body {
+    background-image: url(LiBG.jpg);
+    font-family: sans-serif;
+    color: black;
+    padding: 20px;
+    background-size: auto;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form {
+    color: white;
+    padding: 40px;
+    background-color: rgba(23, 18, 18, 0.8);
+    border-radius: 10px;
+    text-align: center;
+    min-width: 300px;
+}
+
+#form h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #e9d8f4;
+}
+
+.form-control {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-control label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-control input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-control input:focus {
+    outline: none;
+    border-color: #58257b;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    background-color: #58257b;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #db7093;
+}
+
+#err {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin: 10px 0;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+    <div id="form">
+    <a href="./index.html" style="color: black ; margin-right: 400px;"> home</a>
+        <h1>LOGIN</h1>
+
+        <form action="#">
+            <div class="form-control">
+                <label>Username</label>
+                <input id="username" type="text" placeholder="Nhập tên đăng nhập" required />
+            </div>
+            <div class="form-control">
+                <label>Password</label>
+                <input id="password" type="password" placeholder="Nhập mật khẩu" required />
+            </div>
+
+            <p id="err"></p>
+            <button type="submit">Đăng nhập</button>
+        </form>
+    </div>
+
+
+    <script>
+    let users = []; // Đổi tên biến thành users cho chuẩn ngữ nghĩa số nhiều
+    const url = "https://69b6a4f2583f543fbd9e31f3.mockapi.io/users/users";
+
+    // Lấy dữ liệu người dùng từ API
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Dữ liệu user:", data);
+            users = data;
+        });
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn load lại trang
+        
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const loi = document.getElementById("err");
+
+        // Tìm user khớp username và password
+        const foundUser = users.find(
+            (u) => u.name === username && u.password === password
+        );
+
+        if (foundUser) {
+            // Lưu thông tin vào localStorage để các trang khác có thể sử dụng
+            localStorage.setItem("username", foundUser.name);
+            localStorage.setItem("userId", foundUser.id); 
+
+            // Phân quyền: Kiểm tra nếu id là 1 (hoặc "1" do mockAPI thường trả về chuỗi)
+            if (foundUser.id === 1 || foundUser.id === "1") {
+                alert("Đăng nhập thành công với quyền Admin!");
+                window.location.href = "./admin.html"; // Chuyển đến trang Quản lý
+            } else {
+                alert("Đăng nhập thành công!");
+                window.location.href = "./index.html"; // Chuyển đến trang Khách hàng
+            }
+        } else {
+            // Hiển thị lỗi nếu sai thông tin
+            loi.innerHTML = "Sai tài khoản hoặc mật khẩu";
+        }
+    });
+</script>
+
+</body>
+
+</html>
