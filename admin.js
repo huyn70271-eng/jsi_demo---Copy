@@ -1,3 +1,8 @@
+const userId = localStorage.getItem("userId");
+if (userId !== "1" && userId !== 1) {
+    alert("Bạn không có quyền truy cập trang này!");
+    window.location.href = "index.html";
+}
 const API_URL = 'https://692ba4eec829d464006d5216.mockapi.io/guitar/guitar';
 
 const tableBody = document.getElementById('tableBody');
