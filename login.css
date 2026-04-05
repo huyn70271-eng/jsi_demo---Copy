@@ -1,10 +1,11 @@
 body {
-    background-image: url(LiBG.jpg);
-    font-family: sans-serif;
+    background-image: url('LiBG.jpg');
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: black;
     padding: 20px;
-    background-size: auto;
+    background-size: cover; /* Sửa thành cover để ảnh full màn hình */
     background-position: center;
+    background-repeat: no-repeat;
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -15,16 +16,35 @@ body {
 #form {
     color: white;
     padding: 40px;
-    background-color: rgba(23, 18, 18, 0.8);
-    border-radius: 10px;
+    background-color: rgba(23, 18, 18, 0.85);
+    border-radius: 12px;
     text-align: center;
-    min-width: 300px;
+    width: 100%;
+    max-width: 350px; /* Giới hạn độ rộng tối đa */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    color: #e9d8f4;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #db7093;
 }
 
 #form h1 {
     margin-top: 0;
     margin-bottom: 30px;
     color: #e9d8f4;
+    letter-spacing: 2px;
 }
 
 .form-control {
@@ -34,41 +54,93 @@ body {
 
 .form-control label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 14px;
+    color: #ddd;
 }
 
 .form-control input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 14px;
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.2s;
 }
 
 .form-control input:focus {
     outline: none;
     border-color: #58257b;
+    box-shadow: 0 0 0 2px rgba(88, 37, 123, 0.3);
 }
 
 button {
     width: 100%;
-    padding: 12px;
-    border-radius: 5px;
+    padding: 14px;
+    border-radius: 6px;
     border: none;
     background-color: #58257b;
     color: white;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: #db7093;
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
 }
 
 #err {
     color: #ff6b6b;
     font-size: 14px;
     margin: 10px 0;
+    min-height: 20px;
+}
+/* --- TRANG TRÍ CHỨC NĂNG ẨN/HIỆN MẬT KHẨU --- */
+.password-wrapper {
+    position: relative; /* Tạo gốc tọa độ để đặt icon con mắt */
+    display: block;
+}
+
+.password-wrapper input {
+    /* Kế thừa lại style cũ của form-control input */
+    width: 100%;
+    padding: 12px;
+    padding-right: 40px; /* Chừa khoảng trống bên phải để chữ không bị đè lên icon */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.2s;
+}
+
+.password-wrapper input:focus {
+    outline: none;
+    border-color: #58257b;
+    box-shadow: 0 0 0 2px rgba(88, 37, 123, 0.3);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px; /* Cách lề phải 12px */
+    top: 50%; /* Đẩy xuống giữa theo chiều dọc */
+    transform: translateY(-50%); /* Căn chuẩn chính giữa */
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #58257b; /* Đổi màu khi di chuột vào */
 }
