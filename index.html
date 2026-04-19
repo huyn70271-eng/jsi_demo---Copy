@@ -13,7 +13,10 @@
             <div class="logo">
                 <h2>GUITARX</h2>
             </div>
-            
+
+            <!-- Admin link (đã fix thành thẻ <a> hợp lệ) -->
+            <a href="./admin.html" id="admin-link" style="display: none; padding: 8px 16px; background:#e52e2d; color:white; border-radius:6px; text-decoration:none; font-weight:bold; margin-left:15px;">Quản lý</a>
+
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm">
                 <button type="button" id="search-btn">Tìm kiếm</button>
@@ -21,28 +24,86 @@
 
             <div class="header-contact">
                 <span class="hotline">Hotline: <strong>0839 2010 09</strong></span>
-                <span class="cart">🛒 Giỏ hàng</span>
-                <span class="user">👤 <br name="user-name"></span>
+<span id="cart-icon" class="cart">🛒 Giỏ hàng <span id="cart-count">0</span></span>
+                <span class="user">👤 <span id="user-name"></span></span>
             </div>
         </div>
 
+        <!-- NAVBAR ĐÃ HOÀN THIỆN -->
         <nav class="navbar">
-            <ul class="nav-list">
-                <li><a href="#home" class="active" data-type="all">Trang chủ</a></li>
-                <li><a href="#AGui" data-type="Acoustic">Acoustic Guitar</a></li>
-                <li><a href="#CGui" data-type="Classic">Classical Guitar</a></li>
-                <li><a href="#BGui" data-type="Electric">Electric Guitar</a></li>
-                <li><a href="#Acc" data-type="Accessory">Phụ kiện</a></li>
+            <button class="hamburger" id="hamburger">☰</button>
+            <ul class="nav-list" id="nav-menu">
+                <li><a href="#" class="active" data-type="all">Trang chủ</a></li>
+                <li><a href="#" data-type="Acoustic">Acoustic Guitar</a></li>
+                <li><a href="#" data-type="Classic">Classical Guitar</a></li>
+                <li><a href="#" data-type="Electric">Electric Guitar</a></li>
+                <li><a href="#" data-type="Accessory">Phụ kiện</a></li>
                 <li id="login-link"><a href="./login.html">Đăng nhập</a></li>
-                <li id="admin-link" style="display: none;"><a href="./admin.html">Quản lý</a></li>
             </ul>
         </nav>
     </header>       
 
     <main class="main-content">
-        <div id="guitar-list"></div>
+        <div class="content-wrapper">
+            <div id="guitar-list"></div>
+
+            <aside class="filter-sidebar">
+                <h3>Lọc Sản Phẩm</h3>
+                
+                <div class="filter-group">
+                    <label>Hãng sản xuất:</label>
+                    <select id="filter-brand">
+                        <option value="all">Tất cả hãng</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Mức giá:</label>
+                    <select id="filter-price">
+                        <option value="all">Tất cả mức giá</option>
+                        <option value="under2">Dưới 2,000,000 đ</option>
+                        <option value="2to5">Từ 2 - 5 triệu</option>
+                        <option value="over5">Trên 5,000,000 đ</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Xuất xứ:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="origin" value="all" checked> Tất cả</label>
+                        <label><input type="radio" name="origin" value="vietnam"> Hàng Việt Nam</label>
+                        <label><input type="radio" name="origin" value="foreign"> Hàng Ngoại nhập</label>
+                    </div>
+                </div>
+                <div>
+                    <a href="qr.jpg" target="_blank">Nhận đặt làm riêng theo yêu cầu</a>
+                </div>
+            </aside>
+        </div>
     </main>
 
+    <script src="./auth.js"></script>
     <script src="./index.js"></script>
+
+    <!-- CART MODAL -->
+<div id="cart-modal" class="cart-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🛒 Giỏ hàng của bạn</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-total">
+            <strong>Tổng cộng: <span id="cart-total-price">0 đ</span></strong>
+        </div>
+        <div class="modal-actions">
+            <button id="continue-shopping" class="btn-secondary">Tiếp tục mua sắm</button>
+            <button id="checkout-btn" class="btn-primary">Thanh toán ngay</button>
+        </div>
+    </div>
+</div>
+
+<script src="./cart.js"></script>
 </body>
+
 </html>
