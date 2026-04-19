@@ -267,3 +267,308 @@ body {
     color: white;
     transform: scale(1.05);
 }
+/* --- LAYOUT CHỨA LIST VÀ SIDEBAR --- */
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    gap: 30px; /* Khoảng cách giữa List và Sidebar */
+    align-items: flex-start;
+}
+
+#guitar-list {
+    flex: 1; /* Cho danh sách sản phẩm chiếm phần không gian lớn */
+    /* Code cũ của bạn (display: grid...) vẫn giữ nguyên tác dụng */
+}
+
+/* --- STYLING CHO SIDEBAR --- */
+.filter-sidebar {
+    width: 280px; /* Độ rộng cố định của sidebar */
+    background: var(--card-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 20px;
+    position: sticky; /* Giữ sidebar cố định khi cuộn trang */
+    top: 20px; 
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+.filter-sidebar h3 {
+    color: #e52e2d;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(229, 46, 45, 0.2);
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    border-color: #e52e2d;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Responsive: Đưa sidebar lên trên đầu khi xem trên điện thoại */
+@media (max-width: 900px) {
+    .content-wrapper {
+        flex-direction: column-reverse; /* Đảo ngược để thanh tìm kiếm lên trên list */
+    }
+    .filter-sidebar {
+        width: 100%;
+        position: static; /* Bỏ dính */
+    }
+}
+
+
+
+/* ==================== HAMBURGER MENU ==================== */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.navbar {
+    position: relative;
+}
+
+@media (max-width: 900px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #e52e2d;
+        padding: 15px 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-list li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-list a {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .nav-list a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Cải thiện header-top trên mobile */
+@media (max-width: 900px) {
+    .header-top {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .admin-link {
+        margin-top: 10px;
+    }
+}
+
+/* ====================== CART MODAL ====================== */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--card-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 620px;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(31, 38, 135, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #e52e2d;
+}
+
+.close-modal {
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #e52e2d;
+    line-height: 1;
+}
+
+.cart-items {
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 10px 25px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(229,46,45,0.15);
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+.cart-item-info p {
+    margin: 0;
+    color: #636e72;
+    font-size: 0.95rem;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-controls button {
+    width: 30px; height: 30px;
+    border: 2px solid #e52e2d;
+    background: white;
+    color: #e52e2d;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-total-price {
+    font-weight: bold;
+    color: #e52e2d;
+    min-width: 110px;
+    text-align: right;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: #e52e2d;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.cart-total {
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    font-size: 1.35rem;
+    text-align: right;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    padding: 18px 25px;
+    background: rgba(255,255,255,0.15);
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 14px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn-secondary { background: #f1f1f1; color: #333; }
+.btn-primary { background: #e52e2d; color: white; }
+
+/* Badge giỏ hàng */
+.cart { position: relative; cursor: pointer; }
+#cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #e52e2d;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
