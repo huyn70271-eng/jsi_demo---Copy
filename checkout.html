@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán - GUITARX</title>
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .checkout-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 40px;
+        }
+        .checkout-left { background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .checkout-right { background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 20px; height: fit-content; }
+        .section-title { font-size: 1.35rem; color: #e52e2d; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; }
+        .form-group input:focus { border-color: #e52e2d; outline: none; }
+        .order-item { display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .order-item img { width: 60px; height: 60px; object-fit: contain; }
+        .total-line { display: flex; justify-content: space-between; margin: 12px 0; font-size: 1.1rem; }
+        .total-line strong { color: #e52e2d; }
+        .payment-methods label { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #eee; border-radius: 8px; margin-bottom: 8px; cursor: pointer; }
+        .payment-methods input:checked + span { font-weight: bold; color: #e52e2d; }
+        .btn-checkout { width: 100%; padding: 18px; background: #e52e2d; color: white; font-size: 1.3rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; margin-top: 20px; }
+        .btn-checkout:hover { background: #c92424; }
+        @media (max-width: 900px) {
+            .checkout-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER GIỐNG TRANG CHỦ -->
+    <header class="header" style="border-bottom:1px solid #eee;">
+        <div class="header-top">
+            <div class="logo"><h2>GUITARX</h2></div>
+            <h1 style="font-size:24px;color:#e52e2d;">Thanh toán</h1>
+            <a href="index.html" style="color:#e52e2d;font-weight:bold;">← Về giỏ hàng</a>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <!-- CỘT TRÁI: Form thông tin -->
+        <div class="checkout-left">
+            <h2 class="section-title">1. Thông tin giao hàng</h2>
+            
+            <div class="form-group">
+                <label>Họ và tên *</label>
+                <input type="text" id="fullname" placeholder="Nguyễn Văn A" required>
+            </div>
+            <div class="form-group">
+                <label>Số điện thoại *</label>
+                <input type="tel" id="phone" placeholder="0839 2010 09" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="email@example.com">
+            </div>
+
+            <h2 class="section-title" style="margin-top:40px;">2. Địa chỉ nhận hàng</h2>
+            <div class="form-group">
+                <label>Tỉnh / Thành phố *</label>
+                <select id="province">
+                    <option value="">Chọn tỉnh/thành</option>
+                    <option value="TP.HCM">TP. Hồ Chí Minh</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Cần Thơ">Cần Thơ</option>
+                    <!-- Có thể thêm nhiều hơn -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Quận / Huyện *</label>
+                <input type="text" id="district" placeholder="Quận 1">
+            </div>
+            <div class="form-group">
+                <label>Phường / Xã *</label>
+                <input type="text" id="ward" placeholder="Phường Bến Nghé">
+            </div>
+            <div class="form-group">
+                <label>Địa chỉ chi tiết *</label>
+                <input type="text" id="address" placeholder="123 Nguyễn Trãi, P. Bến Thành">
+            </div>
+
+            <h2 class="section-title" style="margin-top:40px;">3. Phương thức vận chuyển</h2>
+            <div class="payment-methods">
+                <label><input type="radio" name="shipping" value="cod" checked> Giao hàng tiêu chuẩn (miễn phí)</label>
+                <label><input type="radio" name="shipping" value="fast"> Giao nhanh 2-3 ngày (30.000 đ)</label>
+            </div>
+
+            <h2 class="section-title" style="margin-top:40px;">4. Phương thức thanh toán</h2>
+            <div class="payment-methods">
+                <label><input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng (COD)</label>
+                <label><input type="radio" name="payment" value="bank"> Chuyển khoản ngân hàng</label>
+                <label><input type="radio" name="payment" value="momo"> Ví MoMo / ZaloPay</label>
+            </div>
+        </div>
+
+        <!-- CỘT PHẢI: Tóm tắt đơn hàng -->
+        <div class="checkout-right">
+            <h2 class="section-title">Tóm tắt đơn hàng</h2>
+            <div id="order-items"></div>
+
+            <div class="total-line">
+                <span>Tạm tính</span>
+                <span id="subtotal">0 đ</span>
+            </div>
+            <div class="total-line">
+                <span>Phí vận chuyển</span>
+                <span id="shipping-fee">0 đ</span>
+            </div>
+            <div class="total-line" style="font-size:1.4rem; font-weight:bold; border-top:2px solid #eee; padding-top:15px;">
+                <span>Tổng cộng</span>
+                <span id="grand-total">0 đ</span>
+            </div>
+
+            <button onclick="completeOrder()" class="btn-checkout">HOÀN TẤT ĐƠN HÀNG</button>
+            <p style="text-align:center; margin-top:15px; color:#666; font-size:0.9rem;">(Đây là demo – không thu tiền thật)</p>
+        </div>
+    </div>
+
+    <script src="./cart.js"></script>
+    <script src="./checkout.js"></script>
+</body>
+</html>
