@@ -5,7 +5,7 @@ if (id) {
     fetch(`https://692ba4eec829d464006d5216.mockapi.io/guitar/guitar/${id}`)
         .then(response => response.json())
         .then(data => {
-            // Cập nhật Breadcrumb
+            // Breadcrumb
             document.getElementById('bread-type').innerText = data.type;
             document.getElementById('bread-name').innerText = data.name;
 
@@ -25,7 +25,7 @@ if (id) {
                     </div>
 
                     <div class="price-box">
-                        <div class="current-price">${(data.price).toLocaleString('vi-VN')}</div>
+                        <div class="current-price">${parsePrice(data.price).toLocaleString('vi-VN')} đ</div>
                     </div>
 
                     <div class="product-desc-short">
@@ -41,9 +41,32 @@ if (id) {
                     </div>
                 </div>
             `;
+
+            // === THÊM SỰ KIỆN GIỎ HÀNG ===
+            const buyBtn = container.querySelector('.btn-buy');
+            const addCartBtn = container.querySelector('.btn-cart');
+
+            if (buyBtn) {
+                buyBtn.addEventListener('click', () => {
+                    addToCart(data);
+                    showCartModal();           // mở modal giỏ hàng
+                });
+            }
+
+            if (addCartBtn) {
+                addCartBtn.addEventListener('click', () => {
+                    addToCart(data);
+                });
+            }
         })
         .catch(error => {
             console.error('Error:', error);
             document.getElementById('product-content').innerHTML = '<h2>Không thể tải thông tin sản phẩm.</h2>';
         });
+}
+
+// Helper parsePrice (để hiển thị giá trên detail)
+function parsePrice(price) {
+    if (!price) return 0;
+    return parseInt(price.toString().replace(/\s/g, '')) || 0;
 }
